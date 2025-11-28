@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHB Cup 2026 — ANANTARASA & ANANTARASA</title>
+
+    <style>
+        /* Reset / Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            /* lapisan gradient + gambar */
+            background:
+                linear-gradient(135deg, rgba(248,250,252,0.27), rgba(255,255,255,0.06)),
+                url('bg pic2.svg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            color: #0f172a;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.35;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgb(194, 169, 60);
+            border: 1px solid rgb(255, 255, 255);
+            box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+            border-radius: 15px;
+            margin: 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0.5rem;
+        }
+
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(220,225,233,0.36), rgba(6,181,212,0.3));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.85);
+            font-weight: 800;
+            font-size: 1.1rem;
+            box-shadow: 0 6px 12px rgba(37,99,235,0.18);
+            transition: transform 0.18s ease;
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 400%;
+            height: 400%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-text h1 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: #000000;
+            margin-top: 2px;
+        }
+
+        .nav-desktop {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.85rem;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: #000000;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.15s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(239,246,255,0.55);
+            color: #2563eb;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            padding: 0.4rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1.6rem;
+        }
+
+        /* Mobile nav */
+        .nav-mobile {
+            display: none;
+            padding: 0.75rem 0;
+            border-top: 1px solid rgba(226,232,240,0.45);
+        }
+
+        .nav-mobile.active {
+            display: block;
+        }
+
+        .nav-mobile .nav-btn {
+            width: 100%;
+            justify-content: flex-start;
+            padding: 0.65rem 0.75rem;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 2.5rem 0 3rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .hero-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(248,250,252,0.6));
+            border-radius: 24px;
+            padding: 2.25rem;
+            box-shadow: 0 12px 30px rgba(2,6,23,0.06);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .hero-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(2,6,23,0.09);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.45rem 0.9rem;
+            background: #f0f4f9;
+            color: #cea80f;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hero h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #000000;
+            margin-bottom: 0.5rem;
+            line-height: 1.12;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            color: #000000;
+            margin-bottom: 1.25rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.25rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            font-size: 0.98rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ebc025, #d49a06);
+            color: white;
+            box-shadow: 0 10px 20px rgba(37,99,235,0.18);
+        }
+
+        .btn-primary:hover { transform: translateY(-2px); }
+
+        .btn-secondary {
+            background: white;
+            color: #334155;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 6px 14px rgba(2,6,23,0.04);
+        }
+
+        .btn-secondary:hover { transform: translateY(-2px); }
+
+        /* Location card (kanan hero) */
+        .location-card {
+            background: rgba(255, 255, 255, 0.563);
+            border-radius: 20px;
+            padding: 1.4rem;
+            box-shadow: 0 12px 28px rgba(2,6,23,0.06);
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        .location-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.9rem;
+            color: #0f172a;
+        }
+
+        .location-item {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 0.8rem;
+            align-items: flex-start;
+        }
+
+        .location-icon {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        .location-item p {
+            color: #475569;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .location-item p.lead {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .location-img {
+            width: 100%;
+            margin-top: 0.9rem;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .location-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Sections */
+        section {
+            padding: 2.5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem 1rem;
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.525);
+        }
+
+        .section-header h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            font-size: 1rem;
+            color: #374151;
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        /* Competition cards grid */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.25rem;
+        }
+
+        .comp-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 22px rgba(2,6,23,0.06);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .comp-card:hover { transform: translateY(-8px); box-shadow: 0 18px 36px rgba(2,6,23,0.08); }
+
+        .comp-img {
+            position: relative;
+            height: 170px;
+            background: linear-gradient(135deg,#ffffff,#cba92c);
+            overflow: hidden;
+        }
+
+        .comp-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0.95;
+            transition: opacity 0.25s ease;
+        }
+
+        .comp-card:hover .comp-img img { opacity: 1; }
+
+        .comp-icon {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 56px;
+            height: 56px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .comp-content {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            flex: 1;
+        }
+
+        .comp-badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            background: #dbeafe;
+            color: #000000;
+            border-radius: 9999px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .comp-content h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .comp-content p {
+            color: #000000;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .comp-content strong { color: #334155; }
+
+        /* Merch */
+        .merch-card {
+            background: linear-gradient(135deg,#c9a227,#f3c531);
+            border-radius: 20px;
+            border: 3px solid rgba(243,197,49,0.95);
+            padding: 1.2rem;
+            box-shadow: 0 10px 30px rgba(2,6,23,0.06);
+            color: #0f172a;
+        }
+
+        .merch-content h2 { font-size: 1.4rem; color: #0f172a; margin-bottom: 0.25rem; font-weight: 800; }
+        .merch-content p { color: #475569; margin-bottom: 0.8rem; }
+
+        .coming-soon {
+            text-align: center;
+            padding: 28px 12px;
+            border-radius: 12px;
+            background: #fff6d2;
+            border: 2px dashed rgba(203,213,225,0.8);
+        }
+        .coming-soon h3 { font-size: 1.1rem; margin-bottom: 8px; font-weight: 800; color: #1e293b; }
+        .coming-soon p { font-size: 0.95rem; color: #64748b; }
+
+        /* Ticket */
+        .ticket-card {
+            background: linear-gradient(135deg,#c9a227,#f3c531);
+            border-radius: 20px;
+            border: 3px solid rgba(243,197,49,0.95);
+            padding: 1.6rem;
+            color: rgb(255, 255, 255);
+            box-shadow: 0 20px 30px rgba(37,99,235,0.12);
+            margin: 0 auto;
+        }
+
+        .ticket-header { display:flex; align-items:center; gap:1rem; margin-bottom:0.6rem; }
+        .ticket-card h2 { font-size: 1.6rem; margin:0; font-weight:800; }
+        .ticket-title { font-size: 1.1rem; margin: 0.6rem 0; }
+        .ticket-subtitle { color: #f7f6f3; font-weight:700; }
+        .ticket-description { font-size: 0.98rem; color: rgba(255,255,255,0.95); margin-bottom: 1rem; }
+
+        .subscribe-btn {
+            display: inline-block;
+            padding: 0.8rem 1.1rem;
+            background: #f3f3f3;
+            color: rgb(9, 1, 1);
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        /* Footer */
+        footer {
+            background: #c9a227;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 2.25rem;
+            border-radius: 12px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-text p:first-child { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.15rem; }
+        .footer-text p:last-child { color: #0b111a; margin:0; }
+
+        .footer-contact a { color: #071112; text-decoration: none; font-weight: 700; }
+        .footer-contact a:hover { color: #091113; }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+            .hero-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-desktop { display: none; }
+            .mobile-menu-btn { display: block; }
+            .logo-text p { display: none; }
+
+            .grid-3 { grid-template-columns: 1fr; }
+            .hero h2 { font-size: 1.6rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .section-header h2 { font-size: 1.4rem; }
+            .subscribe-form { flex-direction: column; }
+            .ticket-card { padding: 1.1rem; }
+            .footer-content { flex-direction: column; text-align: center; gap: 0.6rem; }
+        }
+
+        /* small icon helper */
+        .icon { width: 20px; height: 20px; display:inline-block; }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo" aria-hidden="true">
+                        <img src="LOGO ANANTARASA.png" alt="Logo ANANTARASA">
+                    </div>
+                    <div class="logo-text">
+                        <h1>SHB Cup</h1>
+                        <p>ANANTARASA</p>
+                    </div>
+                </div>
+
+                <nav class="nav-desktop" aria-label="Main navigation">
+                    <button class="nav-btn" onclick="scrollToSection('about')">👥 About</button>
+                    <button class="nav-btn" onclick="scrollToSection('lomba')">🏆 Competitions</button>
+                    <button class="nav-btn" onclick="scrollToSection('merch')">🛍️ Merchandise</button>
+                    <button class="nav-btn" onclick="scrollToSection('ticket')">🎟️ Ticketing</button>
+                </nav>
+
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                    <span id="menu-icon">☰</span>
+                </button>
+            </div>
+
+            <nav class="nav-mobile" id="mobile-menu" aria-hidden="true">
+                <button class="nav-btn" onclick="scrollToSection('about')">👥 About</button>
+                <button class="nav-btn" onclick="scrollToSection('lomba')">🏆 Competitions</button>
+                <button class="nav-btn" onclick="scrollToSection('merch')">🛍️ Merchandise</button>
+                <button class="nav-btn" onclick="scrollToSection('ticket')">🎟️ Ticketing</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO / About -->
+    <section class="hero" id="about" aria-labelledby="about-title">
+        <div class="container">
+            <div class="hero-grid">
+
+                <!-- HERO KIRI -->
+                <div class="hero-card" role="region" aria-label="Informasi acara">
+                    <div class="badge">🎉 Acara Tahun 2026</div>
+                    <h2 id="about-title">SHB Cup 2026</h2>
+                    <p class="hero-subtitle">The Wonder Of Diversity</p>
+                    <p class="hero-description">
+                        SHB Cup is a community festival featuring sports, esports, and arts,
+                        bringing together schools from the Jakarta and Tangerang areas.
+                    </p>
+
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="scrollToSection('ticket')">🎟️ Ticketing Info</button>
+                        <button class="btn btn-secondary" onclick="scrollToSection('lomba')">🏆 Competitions</button>
+                    </div>
+                </div>
+
+                <!-- LOCATION CARD KANAN -->
+                <aside class="location-card" aria-label="Lokasi dan Waktu">
+                    <h3>Location &amp; Time</h3>
+
+                    <div class="location-item">
+                        <span class="location-icon" aria-hidden="true">📍</span>
+                        <div>
+                            <p class="lead">Sekolah Harapan Bangsa Modernland - Junior &amp; Senior High School</p>
+                            <p>Jl. Hartono Raya, RT.001/RW.006, Klp. Indah, Kec. Tangerang, Kota Tangerang, Banten 15117</p>
+                        </div>
+                    </div>
+
+                    <div class="location-item">
+                        <span class="location-icon" aria-hidden="true">📅</span>
+                        <div>
+                            <p class="lead">Monday - Saturday</p>
+                            <p>26 - 31 January 2026</p>
+                        </div>
+                    </div>
+
+                    <div class="location-item">
+                        <span class="location-icon" aria-hidden="true">🕐</span>
+                        <div>
+                            <p class="lead">08:00 - 20:00 WIB</p>
+                            <p>Duration: 6 Days</p>
+                        </div>
+                    </div>
+
+                    <div class="location-img" aria-hidden="true">
+                        <img src="fotoshb.jpg" alt="Gedung Sekolah Harapan Bangsa">
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitions Section -->
+    <section id="lomba" aria-labelledby="lomba-title">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="lomba-title">Competition</h2>
+                <p>SHB Cup offers competitions in physical sports, esports, and creativity for kindergarten, elementary, middle, and high school levels.</p>
+            </div>
+
+            <div class="grid-3" role="list">
+
+                <!-- Basket -->
+                <article class="comp-card" role="listitem" aria-label="Basket competition">
+                    <div class="comp-img">
+                        <img src="basketball.jpeg" alt="Lapangan basket dan bola">
+                        <div class="comp-icon" aria-hidden="true">🏀</div>
+                    </div>
+                    <div class="comp-content">
+                        <span class="comp-badge">SMP - SMA</span>
+                        <h3>Basket</h3>
+                        <p><strong>Prize:</strong></p>
+                        <p>Juara 1 : Rp. 1.500.000 + Piala + Sertifikat<br>
+                           Juara 2 : Rp. 1.300.000 + Piala + Sertifikat<br>
+                           Juara 3 : Rp. 1.000.000 + Piala + Sertifikat</p>
+
+                        <button class="btn btn-primary" style="width:100%; margin-top:0.6rem;"
+                                onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSeZMdncCXxFFcV-A1p5xqQ7Wp3MkkHAo_9Zor3znpmpUX_JhA/viewform?usp=publish-editor'">
+                            Register Now →
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Esports Mobile Legends -->
+                <article class="comp-card" role="listitem" aria-label="Esports Mobile Legends">
+                    <div class="comp-img">
+                        <img src="ml.jpg" alt="Tim esports bertanding">
+                        <div class="comp-icon" aria-hidden="true">🎮</div>
+                    </div>
+                    <div class="comp-content">
+                        <span class="comp-badge">SMP - SMA</span>
+                        <h3>Esports - Mobile Legends</h3>
+                        <p><strong>Prize:</strong></p>
+                        <p>Juara 1 : Rp. 1.000.000 + Piala + Sertifikat<br>
+                           Juara 2 : Rp. 750.000 + Piala + Sertifikat<br>
+                           Juara 3 : Rp. 500.000 + Piala + Sertifikat</p>
+
+                        <button class="btn btn-primary" style="width:100%; margin-top:0.6rem;"
+                                onclick="window.loacation.href='https://docs.google.com/forms/d/e/1FAIpQLSdbR_roTLdrNCuIqlgGbssgZtPCifOb6MFALZ8VdNYN5MAV8Q/viewform?usp=dialog'">
+                            Register Now →
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Badminton -->
+                <article class="comp-card" role="listitem" aria-label="Badminton competition">
+                    <div class="comp-img">
+                        <img src="badmin.jpg" alt="Lapangan badminton">
+                        <div class="comp-icon" aria-hidden="true">🏸</div>
+                    </div>
+                    <div class="comp-content">
+                        <span class="comp-badge">SMA</span>
+                        <h3>Badminton</h3>
+                        <p><strong>Prize:</strong></p>
+                        <p>Juara 1 : Rp. 1.000.000 + Piala + Sertifikat<br>
+                           Juara 2 : Rp. 750.000 + Piala + Sertifikat<br>
+                           Juara 3 : Rp. 500.000 + Piala + Sertifikat</p>
+
+                        <button class="btn btn-primary" style="width:100%; margin-top:0.6rem;"
+                                onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLScsbvTElBSCG0wc7TmQppMtoVj3j8DF46o0RV7azFt3IMz5yQ/viewform?usp=header'">
+                            Register Now →
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Contemporary Dance -->
+                <article class="comp-card" role="listitem" aria-label="Contemporary Dance">
+                    <div class="comp-img">
+                        <img src="tari.png" alt="Penari kontemporer">
+                        <div class="comp-icon" aria-hidden="true">🕺🏻💃🏻</div>
+                    </div>
+                    <div class="comp-content">
+                        <span class="comp-badge">SMA</span>
+                        <h3>Contemporary Dance</h3>
+                        <p><strong>Prize:</strong></p>
+                        <p>Juara 1 : Rp. 1.000.000 + Piala + Sertifikat<br>
+                           Juara 2 : Rp. 750.000 + Piala + Sertifikat<br>
+                           Juara 3 : Rp. 500.000 + Piala + Sertifikat</p>
+
+                        <button class="btn btn-primary" style="width:100%; margin-top:0.6rem;"
+                                onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLScmh5t83bUDcm_H9sQEMz_Qdcw3mQ_LqTg7i_JepsLGzM6cXA/viewform?usp=dialog'">
+                            Register Now →
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Traditional Singing -->
+                <article class="comp-card" role="listitem" aria-label="Traditional Singing">
+                    <div class="comp-img">
+                        <img src="SING .jpg" alt="Seni menyanyi tradisional">
+                        <div class="comp-icon" aria-hidden="true">🎤</div>
+                    </div>
+                    <div class="comp-content">
+                        <span class="comp-badge">SD</span>
+                        <h3>Traditional Singing</h3>
+                        <p><strong>Prize:</strong></p>
+                        <p>Juara 1 : Rp. 750.000 + Piala + Sertifikat<br>
+                           Juara 2 : Rp. 500.000 + Piala + Sertifikat<br>
+                           Juara 3 : Rp. 300.000 + Piala + Sertifikat</p>
+
+                        <button class="btn btn-primary" style="width:100%; margin-top:0.6rem;"
+                                onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLScSQTkTUx7jB6km_9oVKdAtRoqsbLl-CXEl5qq5_5LyOvYBjQ/viewform?usp=header'">
+                            Register Now →
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Mandarin Singing -->
+                <article class="comp-card" role="listitem" aria-label="Mandarin Singing">
+                    <div class="comp-img">
+                        <img src="CINA NYANYI.jpeg" alt="Anak menyanyi lagu mandarin">
+                        <div class="comp-icon" aria-hidden="true">🎤</div>
+                    </div>
+                    <div class="comp-content">
+                        <span class="comp-badge">TK</span>
+                        <h3>Mandarin Singing</h3>
+                        <p><strong>Prize:</strong></p>
+                        <p>Juara 1 : Rp. 500.000 + Piala + Sertifikat<br>
+                           Juara 2 : Rp. 400.000 + Piala + Sertifikat<br>
+                           Juara 3 : Rp. 300.000 + Piala + Sertifikat</p>
+
+                        <button class="btn btn-primary" style="width:100%; margin-top:0.6rem;"
+                                onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSdjACiHOeJMkpxtEv2IhwUnfPUjRLCP9rzJcq-QhofwVDV_Iw/viewform'">
+                            Register Now →
+                        </button>
+                    </div>
+                </article>
+
+                <!-- English Debate -->
+                <article class="comp-card" role="listitem" aria-label="English Debate">
+                    <div class="comp-img">
+                        <img src="ESL DEBATE.jpeg" alt="Peserta debat bahasa Inggris">
+                        <div class="comp-icon" aria-hidden="true">🗣️</div>
+                    </div>
+                    <div class="comp-content">
+                        <span class="comp-badge">SMP - SMA</span>
+                        <h3>English Debate</h3>
+                        <p><strong>Prize:</strong></p>
+                        <p>Juara 1 : Rp. 500.000 + Piala + Sertifikat<br>
+                           Juara 2 : Rp. 400.000 + Piala + Sertifikat<br>
+                           Juara 3 : Rp. 300.000 + Piala + Sertifikat</p>
+
+                        <button class="btn btn-primary" style="width:100%; margin-top:0.6rem;"
+                                onclick="window.location.href='https://forms.gle/RfJKK2EvFKP7AJU59'">
+                            Register Now →
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Spelling Bee -->
+                <article class="comp-card" role="listitem" aria-label="Spelling Bee">
+                    <div class="comp-img">
+                        <img src="SPELLING BEE.webp" alt="Anak mengikuti spelling bee">
+                        <div class="comp-icon" aria-hidden="true">🔤</div>
+                    </div>
+                    <div class="comp-content">
+                        <span class="comp-badge">SD</span>
+                        <h3>Spelling Bee</h3>
+                        <p><strong>Prize:</strong></p>
+                        <p>Juara 1 : Rp. 500.000 + Piala + Sertifikat<br>
+                           Juara 2 : Rp. 400.000 + Piala + Sertifikat<br>
+                           Juara 3 : Rp. 300.000 + Piala + Sertifikat</p>
+
+                        <button class="btn btn-primary" style="width:100%; margin-top:0.6rem;"
+                                onclick="window.location.href='https://forms.gle/cTS3XfxgxqvLidyF7'">
+                            Register Now →
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Billiard -->
+                <article class="comp-card" role="listitem" aria-label="Billiard competition">
+                    <div class="comp-img">
+                        <img src="BILLIARD.webp" alt="Meja biliar">
+                        <div class="comp-icon" aria-hidden="true">🎱</div>
+                    </div>
+                    <div class="comp-content">
+                        <span class="comp-badge">SMP - SMA</span>
+                        <h3>Billiard</h3>
+
+                        <div style="display:flex; gap:1rem; margin-top:0.25rem; align-items:flex-start;">
+                            <div style="flex:1;">
+                                <p style="margin:0;"><strong>Single</strong></p>
+                                <p style="margin:0.25rem 0 0 0;">Juara 1: Rp 1.500.000<br>
+                                    Juara 2: Rp 750.000<br>
+                                    Juara 3: Rp 500.000<br>
+                                    Juara 4: Rp 250.000</p>
+                            </div>
+                            <div style="width:1px; background:#e6e6e6; height:90px;"></div>
+                            <div style="flex:1;">
+                                <p style="margin:0;"><strong>Double</strong></p>
+                                <p style="margin:0.25rem 0 0 0;">Juara 1: Rp 900.000<br>
+                                    Juara 2: Rp 600.000<br>
+                                    Juara 3: Rp 350.000<br>
+                                    Juara 4: Rp 150.000</p>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" style="width:100%; margin-top:0.6rem;"
+                                onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSfrZzVg8GVu6AZxoSyy9BrrMPpXh19BLoS6d9t2OuIlmcx1GQ/viewform?usp=dialog'">
+                            Register Now →
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Merchandise Section -->
+    <section id="merch" aria-labelledby="merch-title">
+        <div class="container">
+            <div class="merch-card" role="region" aria-label="Merchandise resmi">
+                <div class="merch-content">
+                    <h2 id="merch-title">Merchandise Resmi</h2>
+                    <p>The official SHB Cup collection will be available soon. Stay tuned for our official announcements.</p>
+
+                    <div class="coming-soon" role="note" aria-live="polite">
+                        <h3>COMING SOON!</h3>
+                        <p>Merchandise is currently in production. Stay tuned for the release date!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ticket Section -->
+    <section id="ticket" aria-labelledby="ticket-title">
+        <div class="container">
+            <div class="ticket-card" role="region" aria-label="Informasi tiket">
+                <div class="ticket-header">
+                    <span style="font-size: 2.4rem;" aria-hidden="true">🎟️</span>
+                    <h2 id="ticket-title">Ticket &amp; Akses</h2>
+                </div>
+
+                <p class="ticket-title">
+                    Closing Event Ticket — <span class="ticket-subtitle">Coming Soon</span>
+                </p>
+
+                <p class="ticket-description">
+                    Official ticket sales will open soon!
+                </p>
+
+                <div style="text-align: center; margin-top: 10px;">
+                    <!-- Ganti LINK_GOOGLE_FORM dengan link Form yang sebenarnya -->
+                    <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank" rel="noopener noreferrer"
+                       class="subscribe-btn" aria-label="Beli tiket sekarang">
+                        ✍️ COMING SOON!
+                    </a>
+                </div>
+
+                <p class="note" style="margin-top:12px; font-size:0.95rem; color:rgba(255,255,255,0.85);">
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p><strong>© SHB Cup 2026</strong></p>
+                    <p><strong>Organized by Sekolah Harapan Bangsa.</strong></p>
+                </div>
+                <div class="footer-contact">
+                    ✉️ <a href="mailto:osisshbcup@gmail.com"><strong>osisshbcup@gmail.com</strong></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            const isActive = menu.classList.toggle('active');
+            menu.setAttribute('aria-hidden', String(!isActive));
+            icon.textContent = isActive ? '✕' : '☰';
+        }
+
+        // Smooth Scroll to Section
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Close mobile menu if open
+                const menu = document.getElementById('mobile-menu');
+                const icon = document.getElementById('menu-icon');
+                if (menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                    menu.setAttribute('aria-hidden', 'true');
+                    icon.textContent = '☰';
+                }
+            }
+        }
+
+        // Add animation on scroll for cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.75s ease-out';
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, { threshold: 0.12 });
+
+        // Observe cards
+        document.querySelectorAll('.comp-card, .merch-card, .hero-card, .location-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
